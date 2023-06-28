@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-test
+  chart: {{ template "example-test.chart" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "example-test.name" . }}
+  replicas: {{ default 1 .Values.replicas }}
+   # tells deployment to run 1 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: {{ template "example-test.name" . }}
+    spec:
+      containers:
+      - name: clockbox
+        image: "{{ .Values.image.repository }}@{{ .Values.image.tag }}"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+      #imagePullSecrets:
+      #- name: dockerhub-credential

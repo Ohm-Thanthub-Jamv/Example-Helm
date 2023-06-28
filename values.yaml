@@ -1,0 +1,11 @@
+image:
+  repository: docker.io/ohmthanthub/clockbox
+  tag: sha256:4d399f8b1601d8693f3cf216e18e64186c350086deae955452343e6fe64efd1a
+replicas: 1
+resources:
+  requests:
+    cpu: "250m"
+    memory: "512Mi"
+  limits:
+    cpu: "500m"
+    memory: "1Gi"
